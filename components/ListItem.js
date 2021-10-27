@@ -1,18 +1,27 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
-const ListItem = ({task, deleteItem}) => {
+const ListItem = ({task, deleteItem, markAsDone}) => {
+  const styleText = {
+    item: {
+      fontSize: 18,
+      color: '#F7CE68',
+      textDecorationLine: !task.state ? 'none' : 'line-through',
+    },
+  };
   return (
-    <View style={styles.listContainer}>
-      <Text style={styles.item}>{task.text}</Text>
+    <TouchableOpacity
+      onLongPress={() => markAsDone(task.id)}
+      style={styles.listContainer}>
+      <Text style={styleText.item}>{task.text}</Text>
       <Icon
         name="remove"
         size={25}
         color="black"
         onPress={() => deleteItem(task.id)}
       />
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -27,10 +36,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     paddingVertical: 10,
     borderRadius: 30,
-  },
-  item: {
-    fontSize: 18,
-    color: '#F7CE68',
   },
 });
 

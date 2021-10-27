@@ -6,19 +6,27 @@ import {StyleSheet, View, FlatList} from 'react-native';
 
 const App = () => {
   const [tasks, setTasks] = useState([
-    {id: 1, text: 'Clean room'},
-    {id: 2, text: 'Cook dinner'},
-    {id: 3, text: 'Watch the simpsons'},
-    {id: 4, text: 'Read chopped book'},
+    {id: 1, text: 'Clean room', state: false},
+    {id: 2, text: 'Cook dinner', state: false},
+    {id: 3, text: 'Watch the simpsons', state: false},
+    {id: 4, text: 'Read chopped book', state: false},
   ]);
 
   const addItem = text => {
     setTasks(tasksList => {
       return [
-        {id: Math.round(Math.random() * 100 - 5) + 5, text},
+        {id: Math.round(Math.random() * 100 - 5) + 5, text, state: false},
         ...tasksList,
       ];
     });
+  };
+
+  const markAsDone = taskId => {
+    setTasks(
+      tasks.map(task =>
+        task.id === taskId ? {...task, state: !task.state} : task,
+      ),
+    );
   };
 
   const deleteItem = taskId => {
@@ -33,7 +41,11 @@ const App = () => {
       <FlatList
         data={tasks}
         renderItem={({item}) => (
-          <ListItem deleteItem={deleteItem} task={item} />
+          <ListItem
+            deleteItem={deleteItem}
+            task={item}
+            markAsDone={markAsDone}
+          />
         )}
       />
     </View>
