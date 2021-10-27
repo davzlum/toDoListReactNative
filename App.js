@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import ListItem from './components/ListItem';
-import {StyleSheet, View, FlatList, Text} from 'react-native';
+import Header from './components/Header';
+import {StyleSheet, View, FlatList} from 'react-native';
 
 const App = () => {
   const [tasks, setTasks] = useState([
@@ -11,6 +12,7 @@ const App = () => {
   ]);
   return (
     <View>
+      <Header />
       <FlatList
         data={tasks}
         renderItem={({item}) => <ListItem task={item} />}
