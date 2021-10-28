@@ -12,7 +12,10 @@ const AddItem = ({addItem}) => {
         placeholder="Add item"
         onChangeText={onChange}
       />
-      <TouchableOpacity onPress={() => addItem(text)}>
+      <TouchableOpacity
+        onPress={() => {
+          addItem(text);
+        }}>
         <Icon name="plus" size={20} />
       </TouchableOpacity>
     </View>

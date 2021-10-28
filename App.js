@@ -20,7 +20,11 @@ const App = () => {
     } else {
       setTasks(tasksList => {
         return [
-          {id: Math.round(Math.random() * 100 - 5) + 5, text, state: false},
+          {
+            id: Math.round(Math.random() * 100 - 5) + 5,
+            text: text[0].toUpperCase() + text.slice(1),
+            state: false,
+          },
           ...tasksList,
         ];
       });
