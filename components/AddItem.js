@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginHorizontal: 30,
     marginVertical: 5,
+    marginTop: 10,
     paddingHorizontal: 30,
     borderRadius: 30,
     borderWidth: 1,

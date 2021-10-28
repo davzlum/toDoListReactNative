@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import ListItem from './components/ListItem';
 import Header from './components/Header';
 import AddItem from './components/AddItem';
-import {StyleSheet, View, FlatList} from 'react-native';
+import {StyleSheet, View, FlatList, Alert} from 'react-native';
 
 const App = () => {
   const [tasks, setTasks] = useState([
@@ -13,12 +13,18 @@ const App = () => {
   ]);
 
   const addItem = text => {
-    setTasks(tasksList => {
-      return [
-        {id: Math.round(Math.random() * 100 - 5) + 5, text, state: false},
-        ...tasksList,
-      ];
-    });
+    if (!text) {
+      Alert.alert('Error', 'Ooops! You must write an item', [
+        {text: 'OK', onPress: () => console.log('OK Pressed')},
+      ]);
+    } else {
+      setTasks(tasksList => {
+        return [
+          {id: Math.round(Math.random() * 100 - 5) + 5, text, state: false},
+          ...tasksList,
+        ];
+      });
+    }
   };
 
   const markAsDone = taskId => {
@@ -34,6 +40,7 @@ const App = () => {
       return tasksList.filter(task => task.id !== taskId);
     });
   };
+
   return (
     <View>
       <Header />
